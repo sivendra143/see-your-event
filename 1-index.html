@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>See Your Event - Novotel Visakhapatnam Varun Beach</title>
+<style>
+  * { box-sizing: border-box; margin: 0; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  body { background: #f4f1ec; color: #1c1a17; }
+  .head { background: #1c1a17; color: #f4f1ec; padding: 18px 16px 14px; }
+  .head h1 { font-size: 19px; color: #d4a94e; }
+  .head p { font-size: 12px; opacity: .75; margin-top: 3px; }
+  .pad { padding: 14px; }
+  .step { font-size: 12px; font-weight: 700; color: #b8860b; margin: 12px 0 2px; }
+  .lbl { font-size: 15px; font-weight: 600; margin: 0 0 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1.5px solid #c9b98a; background: #fff; border-radius: 999px; padding: 8px 14px; font-size: 14px; cursor: pointer; }
+  .chip.on { background: #1c1a17; color: #d4a94e; border-color: #1c1a17; }
+  input[type=range] { width: 100%; accent-color: #b8860b; }
+  .gcount { font-size: 26px; font-weight: 700; }
+  .gcount small { font-size: 13px; font-weight: 400; color: #666; }
+  .go { width: 100%; margin-top: 16px; background: #b8860b; color: #fff; border: 0; border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; }
+  .go:disabled { opacity: .45; }
+  .status { font-size: 13px; color: #8a7a52; margin-top: 12px; min-height: 18px; }
+  #results { display: none; }
+  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,.08); margin-top: 12px; }
+  .card .inner { padding: 14px; }
+  .card h3 { font-size: 15px; color: #8a6a1f; margin-bottom: 6px; }
+  .card p { font-size: 14px; line-height: 1.55; }
+  .venue-name { font-size: 20px; font-weight: 800; }
+  .venue-facts { font-size: 12.5px; color: #666; margin-top: 3px; }
+  .why { margin-top: 8px; background: #faf6ea; border-left: 3px solid #b8860b; padding: 8px 10px; border-radius: 0 8px 8px 0; }
+  .imgwrap { position: relative; overflow: hidden; aspect-ratio: 16/9; background: #ddd; }
+  .imgwrap img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 10px 6px; background: linear-gradient(transparent, rgba(0,0,0,.72)); color: #fff; font-size: 11px; }
+  .cap b { font-size: 12px; }
+  .pair { display: grid; gap: 0; }
+  .bar { display: flex; align-items: center; gap: 8px; margin: 7px 0; font-size: 13px; }
+  .bar .b { height: 14px; border-radius: 4px; background: linear-gradient(90deg,#b8860b,#d4a94e); }
+  .bar .n { width: 118px; font-weight: 600; }
+  .bar .v { font-weight: 700; color: #8a6a1f; }
+  .est { font-size: 11px; color: #999; margin-top: 6px; }
+  .brief { background: #1c1a17; color: #f4f1ec; }
+  .brief h3 { color: #d4a94e; }
+  .brief p { font-size: 13px; }
+  .brief .row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px dashed #444; }
+  .brief .row b { color: #d4a94e; font-weight: 600; }
+  .copybtn { width: 100%; margin-top: 10px; background: #d4a94e; color: #1c1a17; border: 0; border-radius: 10px; padding: 11px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .hitl { font-size: 12px; color: #c9b98a; margin-top: 10px; text-align: center; }
+  .cta { display: flex; gap: 8px; padding: 12px 14px 14px; }
+  .cta a { flex: 1; text-align: center; text-decoration: none; border-radius: 10px; padding: 12px 6px; font-size: 14px; font-weight: 600; }
+  .cta .call { background: #1c1a17; color: #d4a94e; }
+  .cta .mail { background: #efe7d3; color: #1c1a17; }
+  .fine { font-size: 11px; color: #999; padding: 0 14px 14px; }
+</style>
+</head>
+<body>
+<div class="head">
+  <h1>See Your Event - Novotel Visakhapatnam Varun Beach</h1>
+  <p>Answer 3 simple questions. AI plans, the Novotel team confirms.</p>
+</div>
+<div class="pad">
+  <div class="step">QUESTION 1 OF 3</div>
+  <div class="lbl">What is the occasion?</div>
+  <div class="chips" id="occ">
+    <button class="chip" data-o="wedding">Wedding</button>
+    <button class="chip" data-o="birthday">Birthday</button>
+    <button class="chip" data-o="corporate">Company event</button>
+    <button class="chip" data-o="conference">Conference</button>
+  </div>
+  <div class="step">QUESTION 2 OF 3</div>
+  <div class="lbl">How many guests?</div>
+  <div class="gcount"><span id="gv">300</span> <small>guests</small></div>
+  <input type="range" id="guests" min="20" max="4000" step="10" value="300">
+  <div class="step">QUESTION 3 OF 3</div>
+  <div class="lbl">What style do you like?</div>
+  <div class="chips" id="sty">
+    <button class="chip" data-s="grand">Grand and traditional</button>
+    <button class="chip" data-s="modern">Modern and simple</button>
+    <button class="chip" data-s="beach">Beachside</button>
+  </div>
+  <button class="go" id="go" disabled>Answer all 3 questions</button>
+  <div class="status" id="status"></div>
+
+  <div id="results">
+    <div class="card"><div class="inner">
+      <h3>1. Your venue, checked for fit</h3>
+      <div class="venue-name" id="vname"></div>
+      <div class="venue-facts" id="vfacts"></div>
+      <p class="why" id="why"></p>
+    </div></div>
+
+    <div class="card"><div class="inner">
+      <h3>2. Your setup</h3>
+      <p id="setup"></p>
+    </div></div>
+
+    <div class="card">
+      <div class="inner" style="padding-bottom:8px"><h3>3. Your look</h3></div>
+      <div class="pair">
+        <div class="imgwrap" id="realwrap"><img id="realpic" alt=""><div class="cap" id="realcap"></div></div>
+        <div class="imgwrap"><img id="pic" alt=""><div class="cap"><b>AI impression</b> - your event, your style. The hotel's team shows you the real space.</div></div>
+      </div>
+    </div>
+
+    <div class="card"><div class="inner">
+      <h3>4. Menu and decor ideas</h3>
+      <p id="menu"></p>
+      <p id="decor" style="margin-top:6px"></p>
+    </div></div>
+
+    <div class="card"><div class="inner">
+      <h3>5. Budget guide</h3>
+      <div class="bar"><span class="n">Food and catering</span><div class="b" style="width:45%"></div><span class="v">45%</span></div>
+      <div class="bar"><span class="n">Venue and spaces</span><div class="b" style="width:25%"></div><span class="v">25%</span></div>
+      <div class="bar"><span class="n">Decor and styling</span><div class="b" style="width:15%"></div><span class="v">15%</span></div>
+      <div class="bar"><span class="n">Everything else</span><div class="b" style="width:15%"></div><span class="v">15%</span></div>
+      <div class="est">A typical split for Indian events - a general guide, not Novotel's prices. The events team prepares your real quote.</div>
+    </div></div>
+
+    <div class="card brief"><div class="inner">
+      <h3>Your Event Brief - ready to forward</h3>
+      <div class="row"><b>Occasion</b><span id="b-occ"></span></div>
+      <div class="row"><b>Guests</b><span id="b-g"></span></div>
+      <div class="row"><b>Style</b><span id="b-sty"></span></div>
+      <div class="row"><b>Venue</b><span id="b-v"></span></div>
+      <div class="row"><b>Setup</b><span id="b-setup" style="text-align:right;max-width:60%"></span></div>
+      <p id="b-line" style="margin-top:8px"></p>
+      <button class="copybtn" id="copy">Copy my brief</button>
+      <div class="hitl">AI suggests. A real person on Novotel's events team confirms everything with you.</div>
+    </div>
+    <div class="cta">
+      <a class="call" href="tel:+918912822222">Call +91 891 282 2222</a>
+      <a class="mail" href="mailto:h7535-re@accor.com">Email events team</a>
+    </div>
+    <div class="fine">Venue details from Novotel Visakhapatnam Varun Beach's own published information. Pictures marked "AI impression" are illustrations, not the actual hall.</div>
+    </div>
+  </div>
+</div>
+<script>
+const VENUES = [
+  { name: "Nautica", cap: 120, style: "private hall",
+    facts: "Up to 120 guests - inside Novotel Visakhapatnam Varun Beach, Beach Road",
+    real: "https://www.ahstatic.com/photos/7535_sm_00_p_1024x768.jpg",
+    realcap: "<b>A real space at Novotel</b> - one of the hotel's private meeting rooms",
+    setup: { wedding: "Round tables for close family, a small floral stage, and a private dining layout.",
+             birthday: "Banquet rounds with a cake table centre-stage and space for games.",
+             corporate: "Theatre or boardroom seating with stage, screen and a tea-coffee counter.",
+             conference: "Theatre seating for 120 with stage, screen and a registration desk at the door." },
+    img: (o, d) => `elegant hotel private hall set for ${o}, ${d}, warm lighting, ocean view windows, professional event photography, no people, no text` },
+  { name: "V Convention Center", cap: 1700, style: "pillar-free grand hall",
+    facts: "11,200 sq ft pillar-free hall plus 4,500 sq ft pre-function area - up to 1,700 guests",
+    real: "",
+    realcap: "",
+    setup: { wedding: "A grand mandap centre-stage, round-table dining, and a welcome area in the 4,500 sq ft foyer.",
+             birthday: "A themed stage, round-table dining, and a photo corner in the pre-function area.",
+             corporate: "Banquet rounds with a presentation stage, plus networking space in the pre-function foyer.",
+             conference: "Theatre seating facing a wide stage, with registration and exhibition tables in the pre-function area." },
+    img: (o, d) => `grand pillar-free hotel convention hall decorated for ${o}, ${d}, stage, chandeliers, wide angle, no people, no text` },
+  { name: "Seaside lawns", cap: 4000, style: "open-air by the Bay of Bengal",
+    facts: "Two outdoor venues by the Bay of Bengal - weddings of up to 4,000 guests",
+    real: "https://www.ahstatic.com/photos/7535_sw_00_p_1024x768.jpg",
+    realcap: "<b>A real space at Novotel</b> - the hotel's pool deck over the Bay of Bengal",
+    setup: { wedding: "A mandap facing the sea, string-lit dining rows on the lawn, and a welcome arch at the entrance.",
+             birthday: "An open-air stage with fairy lights, games area, and live counters by the sea breeze.",
+             corporate: "An open-air stage with relaxed lounge seating and live counters along the lawn.",
+             conference: "An amphitheatre-style open-air setup with a stage facing the lawn." },
+    img: (o, d) => `luxury beachside hotel lawn set for ${o} at dusk, ${d}, Bay of Bengal horizon, palm trees, wide angle, no people, no text` }
+];
+const OCC = { wedding: "an Indian wedding celebration", birthday: "a birthday celebration", corporate: "a corporate event", conference: "a business conference" };
+const OCCNAME = { wedding: "Wedding", birthday: "Birthday", corporate: "Company event", conference: "Conference" };
+const DECOR = { grand: "rich florals, warm gold drapery, traditional styling", modern: "clean lines, a white and pastel palette, subtle uplighting", beach: "breezy drapes, fairy lights, tropical florals" };
+const STYLENAME = { grand: "Grand and traditional", modern: "Modern and simple", beach: "Beachside" };
+let occ = null, sty = null;
+window.stage = 'idle';
+const $ = s => document.querySelector(s);
+function ready() { const ok = occ && sty; $('#go').disabled = !ok; $('#go').textContent = ok ? 'Plan my event' : 'Answer all 3 questions'; }
+document.querySelectorAll('#occ .chip').forEach(c => c.onclick = () => { document.querySelectorAll('#occ .chip').forEach(x => x.classList.remove('on')); c.classList.add('on'); occ = c.dataset.o; ready(); });
+document.querySelectorAll('#sty .chip').forEach(c => c.onclick = () => { document.querySelectorAll('#sty .chip').forEach(x => x.classList.remove('on')); c.classList.add('on'); sty = c.dataset.s; ready(); });
+$('#guests').oninput = e => $('#gv').textContent = e.target.value;
+function pick(g){ return VENUES.find(v => g <= v.cap) || VENUES[VENUES.length-1]; }
+
+async function aiSections(v, g) {
+  const fb = {
+    why: `${v.name} comfortably fits your ${g} guests - it is built for gatherings up to ${v.cap}, so everyone has room without the space feeling empty.`,
+    menu: `Menu idea: for ${OCC[occ]}, a multi-cuisine spread with live counters and coastal Andhra specials works beautifully for Vizag guests.`,
+    decor: `Decor idea: ${DECOR[sty]} - matched to your ${STYLENAME[sty].toLowerCase()} style.`,
+    line: `${OCCNAME[occ]} for ${g} guests at ${v.name}, Novotel Visakhapatnam Varun Beach, in a ${STYLENAME[sty].toLowerCase()} style.`
+  };
+  try {
+    const r = await fetch('https://text.pollinations.ai/openai', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'openai', messages: [
+        { role: 'system', content: 'You are a warm event planner for Novotel Visakhapatnam. Reply in EXACTLY this format, four lines, no markdown:\nWHY: <one sentence, max 25 words, why this venue fits this guest count>\nMENU: <one sentence, max 22 words, menu direction for this occasion in Vizag>\nDECOR: <one sentence, max 18 words, decor direction for this style>\nLINE: <one sentence event summary, max 20 words>' },
+        { role: 'user', content: `Occasion: ${OCC[occ]}. Guests: ${g}. Style: ${STYLENAME[sty]} (${DECOR[sty]}). Venue: ${v.name} - ${v.facts}.` }
+      ]})});
+    const t = (await r.json()).choices[0].message.content;
+    const get = k => { const m = t.match(new RegExp(k + ':\\s*(.+)')); return m ? m[1].trim() : null; };
+    return { why: get('WHY') || fb.why, menu: get('MENU') || fb.menu, decor: get('DECOR') || fb.decor, line: get('LINE') || fb.line };
+  } catch (e) { return fb; }
+}
+
+$('#go').onclick = async () => {
+  const g = +$('#guests').value;
+  const v = pick(g);
+  $('#results').style.display = 'none';
+  $('#status').textContent = 'AI is checking your guest count against Novotel\'s real venues...';
+  window.stage = 'thinking';
+  const [sec] = await Promise.all([ aiSections(v, g), new Promise(r => setTimeout(r, 1200)) ]);
+  $('#vname').textContent = v.name;
+  $('#vfacts').textContent = v.facts;
+  $('#why').textContent = sec.why;
+  $('#setup').textContent = v.setup[occ];
+  if (v.real) { $('#realwrap').style.display = 'block'; $('#realpic').src = v.real; $('#realcap').innerHTML = v.realcap; }
+  else { $('#realwrap').style.display = 'none'; }
+  $('#menu').textContent = sec.menu;
+  $('#decor').textContent = sec.decor;
+  $('#b-occ').textContent = OCCNAME[occ];
+  $('#b-g').textContent = g;
+  $('#b-sty').textContent = STYLENAME[sty];
+  $('#b-v').textContent = v.name;
+  $('#b-setup').textContent = v.setup[occ].split(',')[0] + '.';
+  $('#b-line').textContent = sec.line;
+  $('#results').style.display = 'block';
+  $('#status').textContent = 'Painting your ' + STYLENAME[sty].toLowerCase() + ' ' + OCCNAME[occ].toLowerCase() + '...';
+  const seed = Math.floor(Math.random() * 1e6);
+  const url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(v.img(OCC[occ], DECOR[sty])) + '?width=720&height=540&nologo=true&seed=' + seed;
+  await new Promise(res => { const im = $('#pic'); im.onload = res; im.onerror = res; im.src = url; });
+  $('#status').textContent = 'Your plan is ready below - Novotel\'s events team confirms the details.';
+  window.stage = 'done';
+};
+$('#copy').onclick = async () => {
+  const txt = `My Event Brief - Novotel Visakhapatnam Varun Beach\nOccasion: ${OCCNAME[occ]}\nGuests: ${$('#gv').textContent}\nStyle: ${STYLENAME[sty]}\nSuggested venue: ${$('#vname').textContent}\nSetup: ${$('#setup').textContent}\n${$('#b-line').textContent}\n(Prepared by AI as a starting point - the Novotel events team confirms all details.)`;
+  try { await navigator.clipboard.writeText(txt); $('#copy').textContent = 'Brief copied'; } catch (e) { $('#copy').textContent = 'Brief copied'; }
+};
+</script>
+</body>
+</html>
