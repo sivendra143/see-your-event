@@ -2,147 +2,266 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>See Your Event - Novotel Visakhapatnam Varun Beach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; }
-  body { background: #f4f1ec; color: #1c1a17; }
-  .head { background: #1c1a17; color: #f4f1ec; padding: 18px 16px 14px; }
-  .head h1 { font-size: 19px; color: #d4a94e; }
-  .head p { font-size: 12px; opacity: .75; margin-top: 3px; }
-  .pad { padding: 14px; }
-  .step { font-size: 12px; font-weight: 700; color: #b8860b; margin: 12px 0 2px; }
-  .lbl { font-size: 15px; font-weight: 600; margin: 0 0 6px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { border: 1.5px solid #c9b98a; background: #fff; border-radius: 999px; padding: 8px 14px; font-size: 14px; cursor: pointer; }
-  .chip.on { background: #1c1a17; color: #d4a94e; border-color: #1c1a17; }
-  input[type=range] { width: 100%; accent-color: #b8860b; }
-  .gcount { font-size: 26px; font-weight: 700; }
-  .gcount small { font-size: 13px; font-weight: 400; color: #666; }
-  .go { width: 100%; margin-top: 16px; background: #b8860b; color: #fff; border: 0; border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; }
-  .go:disabled { opacity: .45; }
-  .status { font-size: 13px; color: #8a7a52; margin-top: 12px; min-height: 18px; }
-  #results { display: none; }
-  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,.08); margin-top: 12px; }
-  .card .inner { padding: 14px; }
-  .card h3 { font-size: 15px; color: #8a6a1f; margin-bottom: 6px; }
-  .card p { font-size: 14px; line-height: 1.55; }
-  .venue-name { font-size: 20px; font-weight: 800; }
-  .venue-facts { font-size: 12.5px; color: #666; margin-top: 3px; }
-  .why { margin-top: 8px; background: #faf6ea; border-left: 3px solid #b8860b; padding: 8px 10px; border-radius: 0 8px 8px 0; }
-  .imgwrap { position: relative; overflow: hidden; aspect-ratio: 16/9; background: #ddd; }
-  .imgwrap img { width: 100%; height: 100%; display: block; object-fit: cover; }
-  .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 10px 6px; background: linear-gradient(transparent, rgba(0,0,0,.72)); color: #fff; font-size: 11px; }
-  .cap b { font-size: 12px; }
-  .pair { display: grid; gap: 0; }
-  .bar { display: flex; align-items: center; gap: 8px; margin: 7px 0; font-size: 13px; }
-  .bar .b { height: 14px; border-radius: 4px; background: linear-gradient(90deg,#b8860b,#d4a94e); }
-  .bar .n { width: 118px; font-weight: 600; }
-  .bar .v { font-weight: 700; color: #8a6a1f; }
-  .est { font-size: 11px; color: #999; margin-top: 6px; }
-  .brief { background: #1c1a17; color: #f4f1ec; }
-  .brief h3 { color: #d4a94e; }
-  .brief p { font-size: 13px; }
-  .brief .row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px dashed #444; }
-  .brief .row b { color: #d4a94e; font-weight: 600; }
-  .copybtn { width: 100%; margin-top: 10px; background: #d4a94e; color: #1c1a17; border: 0; border-radius: 10px; padding: 11px; font-size: 14px; font-weight: 700; cursor: pointer; }
-  .hitl { font-size: 12px; color: #c9b98a; margin-top: 10px; text-align: center; }
-  .cta { display: flex; gap: 8px; padding: 12px 14px 14px; }
-  .cta a { flex: 1; text-align: center; text-decoration: none; border-radius: 10px; padding: 12px 6px; font-size: 14px; font-weight: 600; }
-  .cta .call { background: #1c1a17; color: #d4a94e; }
-  .cta .mail { background: #efe7d3; color: #1c1a17; }
-  .fine { font-size: 11px; color: #999; padding: 0 14px 14px; }
+  :root { --ink:#17222e; --gold:#b98a2f; --gold-l:#d9b968; --cream:#f6f1e7; --paper:#fffdf8; --line:#e4dcc9; }
+  * { box-sizing: border-box; margin: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body { font-family: 'Inter', sans-serif; background: #0f1823; color: var(--ink); display: flex; justify-content: center; }
+  .app { width: 100%; max-width: 460px; min-height: 100dvh; background: var(--cream); position: relative; overflow: hidden; box-shadow: 0 0 60px rgba(0,0,0,.5); }
+  .screen { position: absolute; inset: 0; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transform: translateX(40px); transition: opacity .35s ease, transform .35s ease; overflow-y: auto; }
+  .screen.on { opacity: 1; pointer-events: auto; transform: none; }
+  .screen.off-left { transform: translateX(-40px); }
+
+  /* progress header */
+  .phead { display: flex; align-items: center; gap: 12px; padding: 16px 18px 10px; }
+  .back { border: 0; background: none; font-size: 20px; color: var(--ink); cursor: pointer; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; }
+  .back:active { background: rgba(0,0,0,.06); }
+  .back.hidden { visibility: hidden; }
+  .ptext { font-size: 11px; letter-spacing: .14em; font-weight: 600; color: var(--gold); text-transform: uppercase; }
+  .pbar { flex: 1; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .pbar i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-l)); width: 0%; transition: width .4s ease; border-radius: 2px; }
+
+  /* hero */
+  .hero { position: relative; color: #fff; justify-content: flex-end; }
+  .hero .bg { position: absolute; inset: 0; background: url('https://www.ahstatic.com/photos/7535_sw_00_p_1024x768.jpg') center/cover; }
+  .hero .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,24,35,.25) 0%, rgba(15,24,35,.05) 35%, rgba(15,24,35,.88) 78%, #0f1823 100%); }
+  .hero .content { position: relative; padding: 28px 24px 34px; }
+  .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-l); font-weight: 600; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 40px; line-height: 1.08; font-weight: 600; margin: 8px 0 4px; }
+  .hero h1 em { font-style: italic; color: var(--gold-l); }
+  .hero .sub { font-size: 14px; color: rgba(255,255,255,.85); margin-bottom: 20px; }
+  .promise { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .promise span { font-size: 13px; color: rgba(255,255,255,.82); display: flex; gap: 9px; align-items: center; }
+  .promise b { color: var(--gold-l); font-weight: 600; }
+
+  .btn { width: 100%; border: 0; border-radius: 14px; padding: 16px; font-size: 15.5px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: transform .12s ease, box-shadow .2s ease, opacity .2s; }
+  .btn:active { transform: scale(.975); }
+  .btn.gold { background: linear-gradient(120deg, var(--gold), var(--gold-l)); color: #17222e; box-shadow: 0 8px 22px rgba(185,138,47,.35); }
+  .btn:disabled { opacity: .4; box-shadow: none; }
+  .btn.ghost { background: none; border: 1.5px solid var(--line); color: var(--ink); font-weight: 500; }
+
+  /* question screens */
+  .q { padding: 6px 22px 26px; display: flex; flex-direction: column; flex: 1; }
+  .q h2 { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 600; line-height: 1.2; margin: 6px 0 4px; }
+  .q .hint { font-size: 13.5px; color: #7a7261; margin-bottom: 22px; }
+  .opts { display: flex; flex-direction: column; gap: 12px; }
+  .opt { display: flex; align-items: center; gap: 14px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 16px; padding: 17px 16px; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: transform .12s ease, border-color .2s, box-shadow .2s; }
+  .opt:active { transform: scale(.98); }
+  .opt.picked { border-color: var(--gold); box-shadow: 0 6px 18px rgba(185,138,47,.18); }
+  .opt .ic { width: 42px; height: 42px; border-radius: 12px; background: #f3ead2; display: grid; place-items: center; flex-shrink: 0; }
+  .opt .ic svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .opt .t { font-size: 15.5px; font-weight: 600; }
+  .opt .d { font-size: 12.5px; color: #8a8271; margin-top: 2px; }
+  .q .grow { flex: 1; }
+
+  /* slider */
+  .bignum { font-family: 'Playfair Display', serif; font-size: 74px; font-weight: 600; text-align: center; line-height: 1; margin: 26px 0 0; }
+  .bignum small { font-family: 'Inter', sans-serif; font-size: 15px; color: #8a8271; font-weight: 500; display: block; margin-top: 6px; letter-spacing: .06em; }
+  .slider-wrap { padding: 26px 4px 6px; }
+  input[type=range] { width: 100%; appearance: none; -webkit-appearance: none; height: 5px; border-radius: 3px; background: linear-gradient(90deg, var(--gold) var(--fill,20%), var(--line) var(--fill,20%)); outline: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: var(--paper); border: 2.5px solid var(--gold); box-shadow: 0 3px 10px rgba(0,0,0,.18); cursor: pointer; }
+  .scale { display: flex; justify-content: space-between; font-size: 11px; color: #a29a86; margin-top: 10px; }
+  .quick { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 18px; }
+  .quick button { border: 1.5px solid var(--line); background: var(--paper); border-radius: 999px; padding: 8px 15px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .quick button:active { background: #f3ead2; }
+
+  /* loading */
+  .load { align-items: center; justify-content: center; text-align: center; padding: 30px; }
+  .ring { width: 62px; height: 62px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--gold); animation: spin 1s linear infinite; margin-bottom: 26px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .load h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+  .load p { font-size: 13.5px; color: #7a7261; max-width: 270px; line-height: 1.55; min-height: 42px; transition: opacity .3s; }
+
+  /* results */
+  .res { padding: 6px 18px 30px; }
+  .res h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; padding: 4px 4px 2px; }
+  .res .sub { font-size: 13px; color: #7a7261; padding: 0 4px 16px; }
+  .rcard { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-bottom: 14px; opacity: 0; transform: translateY(14px); animation: rise .5s ease forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .rcard .inner { padding: 16px; }
+  .kicker { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 7px; }
+  .vname { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 700; }
+  .vfacts { font-size: 12.5px; color: #8a8271; margin-top: 3px; line-height: 1.5; }
+  .why { margin-top: 11px; background: #faf4e2; border-left: 3px solid var(--gold); padding: 10px 12px; border-radius: 0 10px 10px 0; font-size: 13.5px; line-height: 1.55; }
+  .txt { font-size: 14px; line-height: 1.6; }
+  .imgwrap { position: relative; overflow: hidden; aspect-ratio: 4/3; background: #e9e2d2; }
+  .imgwrap img { width: 100%; height: 100%; display: block; object-fit: cover; opacity: 0; transition: opacity .6s; }
+  .imgwrap img.ld { opacity: 1; }
+  .shimmer { position: absolute; inset: 0; background: linear-gradient(100deg, #e9e2d2 30%, #f5efe0 50%, #e9e2d2 70%); background-size: 200% 100%; animation: shim 1.4s infinite; display: grid; place-items: center; }
+  @keyframes shim { to { background-position: -200% 0; } }
+  .shimmer span { font-size: 12.5px; color: #8a8271; background: rgba(255,253,248,.85); padding: 7px 13px; border-radius: 999px; }
+  .badge { position: absolute; top: 10px; left: 10px; font-size: 10.5px; font-weight: 600; letter-spacing: .06em; padding: 5px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
+  .badge.real { background: rgba(23,34,46,.78); color: #d9b968; }
+  .badge.ai { background: rgba(255,253,248,.85); color: #8a6a1f; }
+  .imgnote { font-size: 11.5px; color: #a29a86; padding: 8px 14px 12px; }
+  .bar { display: flex; align-items: center; gap: 10px; margin: 9px 0; font-size: 13px; }
+  .bar .n { width: 122px; font-weight: 500; flex-shrink: 0; }
+  .bar .tr { flex: 1; height: 8px; border-radius: 4px; background: #efe8d6; overflow: hidden; }
+  .bar .b { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-l)); width: 0; transition: width 1s cubic-bezier(.2,.7,.3,1); }
+  .bar .v { font-weight: 700; color: #8a6a1f; width: 36px; text-align: right; flex-shrink: 0; }
+  .est { font-size: 11.5px; color: #a29a86; margin-top: 9px; line-height: 1.5; }
+  .brief { background: var(--ink); color: #f3ede0; border: 0; }
+  .brief .kicker { color: var(--gold-l); }
+  .brief .row { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; padding: 6px 0; border-bottom: 1px dashed #3a4656; }
+  .brief .row b { color: var(--gold-l); font-weight: 600; flex-shrink: 0; }
+  .brief .row span { text-align: right; }
+  .brief .sum { font-size: 13px; line-height: 1.6; margin-top: 10px; color: #e8e0cd; }
+  .copybtn { width: 100%; margin-top: 12px; background: linear-gradient(120deg, var(--gold), var(--gold-l)); color: #17222e; border: 0; border-radius: 11px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .hitl { font-size: 12px; color: #c9bd9a; margin-top: 11px; text-align: center; line-height: 1.5; }
+  .cta { display: flex; gap: 10px; margin-bottom: 12px; opacity: 0; animation: rise .5s ease .9s forwards; }
+  .cta a { flex: 1; text-align: center; text-decoration: none; border-radius: 13px; padding: 14px 6px; font-size: 14px; font-weight: 600; }
+  .cta .call { background: var(--ink); color: var(--gold-l); }
+  .cta .mail { background: #efe7d3; color: var(--ink); }
+  .fine { font-size: 11px; color: #a29a86; padding: 0 6px 8px; line-height: 1.55; text-align: center; }
+  .again { display: block; margin: 4px auto 0; background: none; border: 0; color: var(--gold); font-size: 13.5px; font-weight: 600; cursor: pointer; padding: 10px; font-family: 'Inter', sans-serif; }
 </style>
 </head>
 <body>
-<div class="head">
-  <h1>See Your Event - Novotel Visakhapatnam Varun Beach</h1>
-  <p>Answer 3 simple questions. AI plans, the Novotel team confirms.</p>
-</div>
-<div class="pad">
-  <div class="step">QUESTION 1 OF 3</div>
-  <div class="lbl">What is the occasion?</div>
-  <div class="chips" id="occ">
-    <button class="chip" data-o="wedding">Wedding</button>
-    <button class="chip" data-o="birthday">Birthday</button>
-    <button class="chip" data-o="corporate">Company event</button>
-    <button class="chip" data-o="conference">Conference</button>
-  </div>
-  <div class="step">QUESTION 2 OF 3</div>
-  <div class="lbl">How many guests?</div>
-  <div class="gcount"><span id="gv">300</span> <small>guests</small></div>
-  <input type="range" id="guests" min="20" max="4000" step="10" value="300">
-  <div class="step">QUESTION 3 OF 3</div>
-  <div class="lbl">What style do you like?</div>
-  <div class="chips" id="sty">
-    <button class="chip" data-s="grand">Grand and traditional</button>
-    <button class="chip" data-s="modern">Modern and simple</button>
-    <button class="chip" data-s="beach">Beachside</button>
-  </div>
-  <button class="go" id="go" disabled>Answer all 3 questions</button>
-  <div class="status" id="status"></div>
+<div class="app">
 
-  <div id="results">
-    <div class="card"><div class="inner">
-      <h3>1. Your venue, checked for fit</h3>
-      <div class="venue-name" id="vname"></div>
-      <div class="venue-facts" id="vfacts"></div>
-      <p class="why" id="why"></p>
-    </div></div>
+  <!-- HERO -->
+  <section class="screen hero on" id="s0">
+    <div class="bg"></div><div class="shade"></div>
+    <div class="content">
+      <div class="eyebrow">Novotel Visakhapatnam Varun Beach</div>
+      <h1>See <em>your</em> event</h1>
+      <p class="sub">Three questions. One picture of your day.</p>
+      <div class="promise">
+        <span><b>1</b> Tell us the occasion, guests and style</span>
+        <span><b>2</b> AI checks it against the hotel's real venues</span>
+        <span><b>3</b> The events team confirms every detail with you</span>
+      </div>
+      <button class="btn gold" id="start">Start</button>
+    </div>
+  </section>
 
-    <div class="card"><div class="inner">
-      <h3>2. Your setup</h3>
-      <p id="setup"></p>
-    </div></div>
-
-    <div class="card">
-      <div class="inner" style="padding-bottom:8px"><h3>3. Your look</h3></div>
-      <div class="pair">
-        <div class="imgwrap" id="realwrap"><img id="realpic" alt=""><div class="cap" id="realcap"></div></div>
-        <div class="imgwrap"><img id="pic" alt=""><div class="cap"><b>AI impression</b> - your event, your style. The hotel's team shows you the real space.</div></div>
+  <!-- Q1 OCCASION -->
+  <section class="screen" id="s1">
+    <div class="phead"><button class="back hidden">&#8592;</button><div class="ptext">Question 1 of 3</div><div class="pbar"><i style="width:33%"></i></div></div>
+    <div class="q">
+      <h2>What are you celebrating?</h2>
+      <p class="hint">Tap one - we will shape everything around it.</p>
+      <div class="opts" id="occ">
+        <button class="opt" data-o="wedding"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M12 3l-2 3h4l-2-3z"/></svg></span><span><span class="t">Wedding</span><span class="d">From intimate vows to a grand reception</span></span></button>
+        <button class="opt" data-o="birthday"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 21h14M6 21v-7h12v7M6 14c0-2 2-2.5 3-4M12 14c0-2 2-2.5 3-4M12 7V5M12 5a1.5 1.5 0 1 1 0-3"/></svg></span><span><span class="t">Birthday</span><span class="d">Milestones, big and small</span></span></button>
+        <button class="opt" data-o="corporate"><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 13h16"/></svg></span><span><span class="t">Company event</span><span class="d">Offsites, celebrations, award nights</span></span></button>
+        <button class="opt" data-o="conference"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v3M8 21h8M7 8h6M7 11h10"/></svg></span><span><span class="t">Conference</span><span class="d">Talks, launches and summits</span></span></button>
       </div>
     </div>
+  </section>
 
-    <div class="card"><div class="inner">
-      <h3>4. Menu and decor ideas</h3>
-      <p id="menu"></p>
-      <p id="decor" style="margin-top:6px"></p>
-    </div></div>
+  <!-- Q2 GUESTS -->
+  <section class="screen" id="s2">
+    <div class="phead"><button class="back" data-to="s1">&#8592;</button><div class="ptext">Question 2 of 3</div><div class="pbar"><i style="width:66%"></i></div></div>
+    <div class="q">
+      <h2>How many guests?</h2>
+      <p class="hint">A rough number is fine.</p>
+      <div class="bignum"><span id="gv">300</span><small>GUESTS</small></div>
+      <div class="slider-wrap">
+        <input type="range" id="guests" min="20" max="4000" step="10" value="300">
+        <div class="scale"><span>20</span><span>4,000</span></div>
+        <div class="quick">
+          <button data-g="50">50</button><button data-g="100">100</button><button data-g="250">250</button><button data-g="500">500</button><button data-g="1000">1,000</button><button data-g="2000">2,000</button>
+        </div>
+      </div>
+      <div class="grow"></div>
+      <button class="btn gold" id="to3">Continue</button>
+    </div>
+  </section>
 
-    <div class="card"><div class="inner">
-      <h3>5. Budget guide</h3>
-      <div class="bar"><span class="n">Food and catering</span><div class="b" style="width:45%"></div><span class="v">45%</span></div>
-      <div class="bar"><span class="n">Venue and spaces</span><div class="b" style="width:25%"></div><span class="v">25%</span></div>
-      <div class="bar"><span class="n">Decor and styling</span><div class="b" style="width:15%"></div><span class="v">15%</span></div>
-      <div class="bar"><span class="n">Everything else</span><div class="b" style="width:15%"></div><span class="v">15%</span></div>
-      <div class="est">A typical split for Indian events - a general guide, not Novotel's prices. The events team prepares your real quote.</div>
-    </div></div>
+  <!-- Q3 STYLE -->
+  <section class="screen" id="s3">
+    <div class="phead"><button class="back" data-to="s2">&#8592;</button><div class="ptext">Question 3 of 3</div><div class="pbar"><i style="width:100%"></i></div></div>
+    <div class="q">
+      <h2>And the style?</h2>
+      <p class="hint">This is how we paint your event.</p>
+      <div class="opts" id="sty">
+        <button class="opt" data-s="grand"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9L9.5 8z"/></svg></span><span><span class="t">Grand and traditional</span><span class="d">Rich florals, gold drapery, full splendour</span></span></button>
+        <button class="opt" data-s="modern"><span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 15l6-6"/></svg></span><span><span class="t">Modern and simple</span><span class="d">Clean lines, soft palettes, quiet elegance</span></span></button>
+        <button class="opt" data-s="beach"><span class="ic"><svg viewBox="0 0 24 24"><path d="M2 18c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M12 4a5 5 0 0 1 5 5M12 4v10M12 4a5 5 0 0 0-5 5"/></svg></span><span><span class="t">Beachside</span><span class="d">Sea breeze, fairy lights, open sky</span></span></button>
+      </div>
+    </div>
+  </section>
 
-    <div class="card brief"><div class="inner">
-      <h3>Your Event Brief - ready to forward</h3>
-      <div class="row"><b>Occasion</b><span id="b-occ"></span></div>
-      <div class="row"><b>Guests</b><span id="b-g"></span></div>
-      <div class="row"><b>Style</b><span id="b-sty"></span></div>
-      <div class="row"><b>Venue</b><span id="b-v"></span></div>
-      <div class="row"><b>Setup</b><span id="b-setup" style="text-align:right;max-width:60%"></span></div>
-      <p id="b-line" style="margin-top:8px"></p>
-      <button class="copybtn" id="copy">Copy my brief</button>
-      <div class="hitl">AI suggests. A real person on Novotel's events team confirms everything with you.</div>
+  <!-- LOADING -->
+  <section class="screen load" id="s4">
+    <div class="ring"></div>
+    <h2>Planning your event</h2>
+    <p id="loadmsg">Checking your guest count against Novotel's real venues...</p>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="screen" id="s5">
+    <div class="phead"><button class="back hidden">&#8592;</button><div class="ptext">Your plan</div><div class="pbar"><i style="width:100%"></i></div></div>
+    <div class="res">
+      <h2>Here is your event</h2>
+      <p class="sub" id="ressub"></p>
+
+      <div class="rcard" style="animation-delay:.05s"><div class="inner">
+        <div class="kicker">1 &middot; Venue, checked for fit</div>
+        <div class="vname" id="vname"></div>
+        <div class="vfacts" id="vfacts"></div>
+        <p class="why" id="why"></p>
+      </div></div>
+
+      <div class="rcard" style="animation-delay:.18s"><div class="inner">
+        <div class="kicker">2 &middot; Your setup</div>
+        <p class="txt" id="setup"></p>
+      </div></div>
+
+      <div class="rcard" style="animation-delay:.31s">
+        <div class="inner" style="padding-bottom:10px"><div class="kicker">3 &middot; Your look</div></div>
+        <div class="imgwrap" id="realwrap"><img id="realpic" alt="Real venue space"><span class="badge real">REAL VENUE PHOTO</span></div>
+        <div class="imgwrap"><div class="shimmer" id="shim"><span>Painting your style...</span></div><img id="pic" alt="AI impression of your event"><span class="badge ai">AI IMPRESSION</span></div>
+        <div class="imgnote">The photo is a real Novotel space. The painting is an AI impression of your style - the events team shows you the real setup.</div>
+      </div>
+
+      <div class="rcard" style="animation-delay:.44s"><div class="inner">
+        <div class="kicker">4 &middot; Menu and decor ideas</div>
+        <p class="txt" id="menu"></p>
+        <p class="txt" id="decor" style="margin-top:7px"></p>
+      </div></div>
+
+      <div class="rcard" style="animation-delay:.57s"><div class="inner">
+        <div class="kicker">5 &middot; Budget guide</div>
+        <div class="bar"><span class="n">Food and catering</span><div class="tr"><div class="b" data-w="45"></div></div><span class="v">45%</span></div>
+        <div class="bar"><span class="n">Venue and spaces</span><div class="tr"><div class="b" data-w="25"></div></div><span class="v">25%</span></div>
+        <div class="bar"><span class="n">Decor and styling</span><div class="tr"><div class="b" data-w="15"></div></div><span class="v">15%</span></div>
+        <div class="bar"><span class="n">Everything else</span><div class="tr"><div class="b" data-w="15"></div></div><span class="v">15%</span></div>
+        <div class="est">A typical split for Indian events - a general guide, not Novotel's prices. The events team prepares your real quote.</div>
+      </div></div>
+
+      <div class="rcard brief" style="animation-delay:.7s"><div class="inner">
+        <div class="kicker">Your event brief - ready to forward</div>
+        <div class="row"><b>Occasion</b><span id="b-occ"></span></div>
+        <div class="row"><b>Guests</b><span id="b-g"></span></div>
+        <div class="row"><b>Style</b><span id="b-sty"></span></div>
+        <div class="row"><b>Venue</b><span id="b-v"></span></div>
+        <div class="row"><b>Setup</b><span id="b-setup"></span></div>
+        <p class="sum" id="b-line"></p>
+        <button class="copybtn" id="copy">Copy my brief</button>
+        <div class="hitl">AI suggests. A real person on Novotel's events team confirms everything with you.</div>
+      </div></div>
+
+      <div class="cta">
+        <a class="call" href="tel:+918912822222">Call +91 891 282 2222</a>
+        <a class="mail" href="mailto:h7535-re@accor.com">Email events team</a>
+      </div>
+      <div class="fine">Venue details from Novotel Visakhapatnam Varun Beach's own published information. Pictures marked "AI impression" are illustrations, not the actual hall.</div>
+      <button class="again" id="again">Plan another event</button>
     </div>
-    <div class="cta">
-      <a class="call" href="tel:+918912822222">Call +91 891 282 2222</a>
-      <a class="mail" href="mailto:h7535-re@accor.com">Email events team</a>
-    </div>
-    <div class="fine">Venue details from Novotel Visakhapatnam Varun Beach's own published information. Pictures marked "AI impression" are illustrations, not the actual hall.</div>
-    </div>
-  </div>
+  </section>
 </div>
+
 <script>
 const VENUES = [
   { name: "Nautica", cap: 120, style: "private hall",
     facts: "Up to 120 guests - inside Novotel Visakhapatnam Varun Beach, Beach Road",
     real: "https://www.ahstatic.com/photos/7535_sm_00_p_1024x768.jpg",
-    realcap: "<b>A real space at Novotel</b> - one of the hotel's private meeting rooms",
     setup: { wedding: "Round tables for close family, a small floral stage, and a private dining layout.",
              birthday: "Banquet rounds with a cake table centre-stage and space for games.",
              corporate: "Theatre or boardroom seating with stage, screen and a tea-coffee counter.",
@@ -151,7 +270,6 @@ const VENUES = [
   { name: "V Convention Center", cap: 1700, style: "pillar-free grand hall",
     facts: "11,200 sq ft pillar-free hall plus 4,500 sq ft pre-function area - up to 1,700 guests",
     real: "",
-    realcap: "",
     setup: { wedding: "A grand mandap centre-stage, round-table dining, and a welcome area in the 4,500 sq ft foyer.",
              birthday: "A themed stage, round-table dining, and a photo corner in the pre-function area.",
              corporate: "Banquet rounds with a presentation stage, plus networking space in the pre-function foyer.",
@@ -160,7 +278,6 @@ const VENUES = [
   { name: "Seaside lawns", cap: 4000, style: "open-air by the Bay of Bengal",
     facts: "Two outdoor venues by the Bay of Bengal - weddings of up to 4,000 guests",
     real: "https://www.ahstatic.com/photos/7535_sw_00_p_1024x768.jpg",
-    realcap: "<b>A real space at Novotel</b> - the hotel's pool deck over the Bay of Bengal",
     setup: { wedding: "A mandap facing the sea, string-lit dining rows on the lawn, and a welcome arch at the entrance.",
              birthday: "An open-air stage with fairy lights, games area, and live counters by the sea breeze.",
              corporate: "An open-air stage with relaxed lounge seating and live counters along the lawn.",
@@ -174,10 +291,32 @@ const STYLENAME = { grand: "Grand and traditional", modern: "Modern and simple",
 let occ = null, sty = null;
 window.stage = 'idle';
 const $ = s => document.querySelector(s);
-function ready() { const ok = occ && sty; $('#go').disabled = !ok; $('#go').textContent = ok ? 'Plan my event' : 'Answer all 3 questions'; }
-document.querySelectorAll('#occ .chip').forEach(c => c.onclick = () => { document.querySelectorAll('#occ .chip').forEach(x => x.classList.remove('on')); c.classList.add('on'); occ = c.dataset.o; ready(); });
-document.querySelectorAll('#sty .chip').forEach(c => c.onclick = () => { document.querySelectorAll('#sty .chip').forEach(x => x.classList.remove('on')); c.classList.add('on'); sty = c.dataset.s; ready(); });
-$('#guests').oninput = e => $('#gv').textContent = e.target.value;
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => {
+    if (s.id === id) { s.classList.remove('off-left'); s.classList.add('on'); }
+    else if (s.classList.contains('on')) { s.classList.remove('on'); s.classList.add('off-left'); }
+    else { s.classList.remove('on', 'off-left'); }
+  });
+}
+$('#start').onclick = () => show('s1');
+document.querySelectorAll('.back').forEach(b => b.onclick = () => { if (b.dataset.to) show(b.dataset.to); });
+document.querySelectorAll('#occ .opt').forEach(c => c.onclick = () => {
+  document.querySelectorAll('#occ .opt').forEach(x => x.classList.remove('picked'));
+  c.classList.add('picked'); occ = c.dataset.o;
+  setTimeout(() => show('s2'), 320);
+});
+const slider = $('#guests');
+function paintSlider() { const p = (slider.value - slider.min) / (slider.max - slider.min) * 100; slider.style.setProperty('--fill', p + '%'); $('#gv').textContent = Number(slider.value).toLocaleString('en-IN'); }
+slider.oninput = paintSlider; paintSlider();
+document.querySelectorAll('.quick button').forEach(b => b.onclick = () => { slider.value = b.dataset.g; paintSlider(); });
+$('#to3').onclick = () => show('s3');
+document.querySelectorAll('#sty .opt').forEach(c => c.onclick = () => {
+  document.querySelectorAll('#sty .opt').forEach(x => x.classList.remove('picked'));
+  c.classList.add('picked'); sty = c.dataset.s;
+  setTimeout(run, 320);
+});
+$('#again').onclick = () => { occ = sty = null; window.stage = 'idle'; show('s0'); };
 function pick(g){ return VENUES.find(v => g <= v.cap) || VENUES[VENUES.length-1]; }
 
 async function aiSections(v, g) {
@@ -199,38 +338,53 @@ async function aiSections(v, g) {
   } catch (e) { return fb; }
 }
 
-$('#go').onclick = async () => {
-  const g = +$('#guests').value;
+let loadTimer = null;
+async function run() {
+  const g = +slider.value;
   const v = pick(g);
-  $('#results').style.display = 'none';
-  $('#status').textContent = 'AI is checking your guest count against Novotel\'s real venues...';
+  show('s4');
   window.stage = 'thinking';
-  const [sec] = await Promise.all([ aiSections(v, g), new Promise(r => setTimeout(r, 1200)) ]);
+  const msgs = ['Checking your guest count against Novotel\'s real venues...', 'Sketching your setup...', 'Gathering menu and decor ideas...'];
+  let mi = 0;
+  $('#loadmsg').textContent = msgs[0];
+  loadTimer = setInterval(() => { mi = (mi + 1) % msgs.length; $('#loadmsg').textContent = msgs[mi]; }, 1600);
+  const [sec] = await Promise.all([ aiSections(v, g), new Promise(r => setTimeout(r, 1800)) ]);
+  clearInterval(loadTimer);
+
   $('#vname').textContent = v.name;
   $('#vfacts').textContent = v.facts;
   $('#why').textContent = sec.why;
   $('#setup').textContent = v.setup[occ];
-  if (v.real) { $('#realwrap').style.display = 'block'; $('#realpic').src = v.real; $('#realcap').innerHTML = v.realcap; }
-  else { $('#realwrap').style.display = 'none'; }
+  const rw = $('#realwrap');
+  if (v.real) { rw.style.display = 'block'; const rp = $('#realpic'); rp.classList.remove('ld'); rp.onload = () => rp.classList.add('ld'); rp.src = v.real; }
+  else { rw.style.display = 'none'; }
   $('#menu').textContent = sec.menu;
   $('#decor').textContent = sec.decor;
   $('#b-occ').textContent = OCCNAME[occ];
-  $('#b-g').textContent = g;
+  $('#b-g').textContent = g.toLocaleString('en-IN');
   $('#b-sty').textContent = STYLENAME[sty];
   $('#b-v').textContent = v.name;
   $('#b-setup').textContent = v.setup[occ].split(',')[0] + '.';
   $('#b-line').textContent = sec.line;
-  $('#results').style.display = 'block';
-  $('#status').textContent = 'Painting your ' + STYLENAME[sty].toLowerCase() + ' ' + OCCNAME[occ].toLowerCase() + '...';
+  $('#ressub').textContent = sec.line;
+
+  const im = $('#pic');
+  im.classList.remove('ld'); im.style.opacity = 0;
+  $('#shim').style.display = 'grid';
+  show('s5');
+  document.querySelectorAll('.bar .b').forEach(b => { b.style.width = '0'; requestAnimationFrame(() => requestAnimationFrame(() => { b.style.width = b.dataset.w + '%'; })); });
+
   const seed = Math.floor(Math.random() * 1e6);
   const url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(v.img(OCC[occ], DECOR[sty])) + '?width=720&height=540&nologo=true&seed=' + seed;
-  await new Promise(res => { const im = $('#pic'); im.onload = res; im.onerror = res; im.src = url; });
-  $('#status').textContent = 'Your plan is ready below - Novotel\'s events team confirms the details.';
+  await new Promise(res => { im.onload = res; im.onerror = res; im.src = url; });
+  $('#shim').style.display = 'none';
+  im.style.opacity = 1; im.classList.add('ld');
   window.stage = 'done';
-};
+}
 $('#copy').onclick = async () => {
   const txt = `My Event Brief - Novotel Visakhapatnam Varun Beach\nOccasion: ${OCCNAME[occ]}\nGuests: ${$('#gv').textContent}\nStyle: ${STYLENAME[sty]}\nSuggested venue: ${$('#vname').textContent}\nSetup: ${$('#setup').textContent}\n${$('#b-line').textContent}\n(Prepared by AI as a starting point - the Novotel events team confirms all details.)`;
-  try { await navigator.clipboard.writeText(txt); $('#copy').textContent = 'Brief copied'; } catch (e) { $('#copy').textContent = 'Brief copied'; }
+  try { await navigator.clipboard.writeText(txt); } catch (e) {}
+  $('#copy').textContent = 'Brief copied';
 };
 </script>
 </body>
